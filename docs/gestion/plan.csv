@@ -1,0 +1,11 @@
+id,tarea,rol,esfuerzo_estimado_h,dependencia,estado,evidencia_cierre
+T01,Requisitos y oráculo,E2,1,,en revisión,docs/requisitos/requisitos.md
+T02,Diseño y SQLite,E3,1,T01,en revisión,docs/gestion/diseno.md
+T03,Flujo y cuatro pantallas,E3,4,T02,en revisión,src/panviz/
+T04,Pruebas y regresión,E4,1.5,T03,pendiente,evidencias/verificacion.json
+T05,Revisión cruzada,E4,1,T03,pendiente,evidencias/revision.md
+T06,CR01 y aceptación,E2,1,T04,pendiente,evidencias/validacion.md
+T07,Formación de cinco integrantes,E2,0.25,T01,pendiente,evidencias/formacion.csv
+T08,Medición y segundo corte,E5,0.5,T04,pendiente,evidencias/seguimiento.csv
+T09,Liberación y copia limpia,E5,0.5,T05;T06,pendiente,evidencias/liberacion.md
+T10,Informe y demostración,E1,1,T08,pendiente,docs/informe.html

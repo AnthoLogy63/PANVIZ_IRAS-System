@@ -1,0 +1,8 @@
+<aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+  <a class="brand" href="{{ url_for('dashboard.index') }}"><img src="{{ url_for('static', filename='img/mark.svg') }}" alt="" width="40" height="40"><span>PANVIZ<small>IRAS · HEALTH INTELLIGENCE</small></span></a>
+  <div class="nav-label">ESPACIO DE TRABAJO</div>
+  <nav>{% for endpoint, label, icon in [('dashboard.index','Dashboard','▦'),('importacion.index','Importar datos','↥'),('validacion.index','Validación de datos','✓'),('reportes.index','Reportes consolidados','▤')] %}
+    <a href="{{ url_for(endpoint) }}" class="nav-item {% if request.endpoint == endpoint %}active{% endif %}" {% if request.endpoint == endpoint %}aria-current="page"{% endif %}><span class="nav-icon" aria-hidden="true">{{ icon }}</span><span class="nav-text">{{ label }}</span></a>
+  {% endfor %}</nav>
+  <div class="sidebar-bottom"><div class="system-note"><span class="pulse"></span><strong>Entorno local</strong><p>Información consistente.<br>Decisiones con evidencia.</p></div><div class="side-version">PANVIZ IRAS <span>v{{ version }}</span></div></div>
+</aside>

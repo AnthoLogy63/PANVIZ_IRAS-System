@@ -1,0 +1,7 @@
+id,diseno,codigo,prueba,version,evidencia,estado
+R01,docs/gestion/diseno.md,src/panviz/services/csv_service.py,tests/test_importacion.py::test_importacion_valida,B0,EV02,implementado; ejecución pendiente
+R02,docs/requisitos/catalogo.md,src/panviz/services/validation_service.py,tests/test_validacion.py,B0,EV02,implementado; ejecución pendiente
+R03,docs/gestion/diseno.md,src/panviz/services/consolidation_service.py,tests/test_consolidacion.py::test_consolidacion_conocida,B0,EV02,implementado; ejecución pendiente
+R04,docs/gestion/diseno.md,src/panviz/services/export_service.py,tests/test_exportacion.py::test_reconciliacion_y_exportacion,B0,EV02,implementado; ejecución pendiente
+R05,docs/gestion/baselines.md,docs/requisitos/trazabilidad.csv,tests/test_trazabilidad.py::test_r05_enlaces_trazabilidad,v0.1,EV01; EV04; EV05,parcial; revisiones y Git pendientes
+CR01,docs/gestion/CR01.md,src/panviz/services/consolidation_service.py,tests/test_filtro_distrito.py::test_cr01_filtro_distrito,v0.1,EV02; EV04,implementado; ejecución y aprobación académica pendientes

@@ -1,0 +1,63 @@
+
+panviz-iras/
+│
+├── src/
+│   └── panviz/
+│       ├── __init__.py
+│       ├── config.py
+│       │
+│       ├── routes/                 # BACKEND
+│       │   ├── dashboard.py
+│       │   ├── importacion.py
+│       │   ├── validacion.py
+│       │   └── reportes.py
+│       │
+│       ├── services/               # LÓGICA
+│       │   ├── csv_service.py
+│       │   ├── validation_service.py
+│       │   ├── consolidation_service.py
+│       │   └── export_service.py
+│       │
+│       ├── templates/              # FRONTEND
+│       │   ├── base.html
+│       │   ├── dashboard.html
+│       │   ├── importacion.html
+│       │   ├── validacion.html
+│       │   ├── reportes.html
+│       │   │
+│       │   └── components/
+│       │       ├── sidebar.html
+│       │       ├── navbar.html
+│       │       └── stat_card.html
+│       │
+│       └── static/                 # FRONTEND
+│           ├── css/
+│           │   └── styles.css
+│           ├── js/
+│           │   ├── app.js
+│           │   └── charts.js
+│           └── img/
+│
+├── datos/
+│   ├── entrada/
+│   │   └── notificaciones_iras.csv
+│   └── salida/
+│
+├── tests/
+│   ├── test_importacion.py
+│   ├── test_validacion.py
+│   ├── test_consolidacion.py
+│   ├── test_exportacion.py
+│   └── test_filtro_distrito.py
+│
+├── docs/
+│   ├── requisitos/
+│   ├── proceso/
+│   └── gestion/
+│
+├── evidencias/
+│
+├── run.py
+├── requirements.txt
+├── .gitignore
+└── README.md

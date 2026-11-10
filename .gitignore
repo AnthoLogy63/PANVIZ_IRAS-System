@@ -1,0 +1,57 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Python y herramientas de calidad
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Configuración privada y secretos locales
+.env
+.env.*
+!.env.example
+!.env.sample
+.secret_key
+
+# SQLite: conservar la base principal y excluir archivos auxiliares
+/instance/*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+!/instance/panviz.sqlite3
+
+# Resultados descargados y paquetes de entrega
+/datos/salida/*
+!/datos/salida/.gitkeep
+/output/
+build/
+dist/
+*.egg-info/
+
+# Logs y temporales
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Editor y sistema operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Los datos sintéticos de entrada, pruebas, documentación,
+# evidencias y recursos estáticos deben conservarse en Git.

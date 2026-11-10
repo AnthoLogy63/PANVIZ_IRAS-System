@@ -1,0 +1,22 @@
+{
+  "tipo": "Inspección estática de la fuente; no sustituye Python/pytest ni navegador",
+  "fecha": "2026-11-10",
+  "archivos_principales": 79,
+  "archivos_python": 26,
+  "funciones_prueba": 37,
+  "filas_datos": 20,
+  "delimitadores_python": "Sin incidencias detectadas por revisión de delimitadores; no se ha compilado Python",
+  "referencias_plantillas": "Comprobadas",
+  "referencias_assets": "Comprobadas salvo vendor, pendiente descarga manual",
+  "javascript": "Revisado en fuente; compilación no disponible en el entorno REPL",
+  "incidencias": [],
+  "pendientes": [
+    "Descargar dependencias frontend",
+    "Instalar Flask/pytest",
+    "Ejecutar scripts/verificar.py",
+    "Verificar visualmente la aplicación",
+    "Completar revisiones y actas humanas",
+    "Crear historial Git y etiqueta",
+    "Generar ZIP tras verificación"
+  ]
+}

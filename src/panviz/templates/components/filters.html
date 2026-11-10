@@ -1,0 +1,7 @@
+<form method="get" class="filter-bar" aria-label="Filtrar datos">
+  <span class="filter-title">⌕ <strong>Filtros</strong></span>
+  {% for key, label in [('distrito','Distrito'),('semana_iso','Semana ISO'),('establecimiento','Establecimiento'),('grupo_etario','Grupo etario')] %}
+    {% if key != 'distrito' or district_filter_enabled %}<label class="sr-only" for="filter-{{ key }}">{{ label }}</label><select id="filter-{{ key }}" name="{{ key }}"><option value="">{{ label }}: todos</option>{% if filters[key] and filters[key] not in options[key] %}<option selected value="{{ filters[key] }}">{{ filters[key] }}</option>{% endif %}{% for value in options[key] %}<option value="{{ value }}" {% if filters[key] == value %}selected{% endif %}>{{ value }}</option>{% endfor %}</select>{% endif %}
+  {% endfor %}
+  <button class="button compact" type="submit">Aplicar</button><a class="text-link" href="{{ url_for(request.endpoint) }}">Limpiar</a>
+</form>

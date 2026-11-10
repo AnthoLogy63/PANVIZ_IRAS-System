@@ -1,0 +1,86 @@
+{
+  "fecha_utc": "2026-11-10T14:55:26.849Z",
+  "metodo": "Importación directa SQLite autorizada por el usuario; validación previa y transacción atómica",
+  "lote": 2,
+  "importados": 100,
+  "rechazados": 0,
+  "total_antes": 15,
+  "total_despues": 115,
+  "semanas": [
+    {
+      "semana_iso": "2026-W02",
+      "total": 4
+    },
+    {
+      "semana_iso": "2026-W03",
+      "total": 6
+    },
+    {
+      "semana_iso": "2026-W04",
+      "total": 15
+    },
+    {
+      "semana_iso": "2026-W05",
+      "total": 14
+    },
+    {
+      "semana_iso": "2026-W06",
+      "total": 31
+    },
+    {
+      "semana_iso": "2026-W07",
+      "total": 14
+    },
+    {
+      "semana_iso": "2026-W08",
+      "total": 10
+    },
+    {
+      "semana_iso": "2026-W09",
+      "total": 7
+    },
+    {
+      "semana_iso": "2026-W10",
+      "total": 4
+    },
+    {
+      "semana_iso": "2026-W11",
+      "total": 10
+    }
+  ],
+  "distritos": [
+    {
+      "distrito": "Lima",
+      "total": 30
+    },
+    {
+      "distrito": "San Juan de Lurigancho",
+      "total": 22
+    },
+    {
+      "distrito": "Ate",
+      "total": 19
+    },
+    {
+      "distrito": "Comas",
+      "total": 19
+    },
+    {
+      "distrito": "San Martín de Porres",
+      "total": 7
+    },
+    {
+      "distrito": "Chorrillos",
+      "total": 6
+    },
+    {
+      "distrito": "Los Olivos",
+      "total": 6
+    },
+    {
+      "distrito": "Villa El Salvador",
+      "total": 6
+    }
+  ],
+  "backup": "instance\\panviz-antes-importacion-100-1794322526681.sqlite3"
+}

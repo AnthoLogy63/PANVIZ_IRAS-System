@@ -1,0 +1,50 @@
+{
+  "descripcion": "Resultado esperado definido antes de ejecutar. Base SQLite vacía.",
+  "total": 20,
+  "aceptados": 15,
+  "rechazados": 5,
+  "grupos_consolidados": 15,
+  "por_distrito": {
+    "Lima": 5,
+    "Ate": 5,
+    "Comas": 5
+  },
+  "por_semana": {
+    "2026-W02": 3,
+    "2026-W03": 3,
+    "2026-W04": 3,
+    "2026-W05": 3,
+    "2026-W06": 3
+  },
+  "rechazos": [
+    {
+      "fila": 17,
+      "id": "IRAS001",
+      "motivo": "duplicado"
+    },
+    {
+      "fila": 18,
+      "id": "IRAS016",
+      "motivo": "distrito vacío"
+    },
+    {
+      "fila": 19,
+      "id": "IRAS017",
+      "motivo": "fecha imposible"
+    },
+    {
+      "fila": 20,
+      "id": "IRAS018",
+      "motivo": "grupo etario inválido"
+    },
+    {
+      "fila": 21,
+      "id": "IRAS019",
+      "motivo": "evento inválido"
+    }
+  ],
+  "segunda_importacion_mismo_archivo": {
+    "aceptados": 0,
+    "rechazados": 20
+  }
+}

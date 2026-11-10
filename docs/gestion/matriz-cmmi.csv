@@ -1,0 +1,19 @@
+nivel,area,rol,estado,evidencia_preparada,brecha_restante,accion
+2,REQM,E2,parcial,docs/requisitos/requisitos.md y trazabilidad.csv,Falta revisión y acuerdo humano,Revisar y firmar B0
+2,PP,E1,parcial,docs/gestion/plan.csv,Faltan nombres compromisos y esfuerzo observado,Completar plan con integrantes reales
+2,PMC,E1,no evidenciada,evidencias/seguimiento.csv,Faltan dos cortes y acción sobre desviación,Registrar cortes reales
+2,SAM,E1,no aplicable con justificación,docs/gestion/decision-sqlite.md,No hay adquisición contratada; librerías no equivalen a SAM,Revisar aplicabilidad si cambia alcance
+2,MA,E5,parcial,scripts/verificar.py y docs/gestion/metricas.md,Falta recoger e interpretar mediciones,Ejecutar y discutir indicadores
+2,PPQA,E4,parcial,evidencias/revision.md,Falta revisión independiente y cierre verificado,Realizar revisión cruzada
+2,CM,E5,parcial,baselines/B0/manifest.json y CR01.md,Faltan historial real etiqueta y aprobaciones,Operar Git manualmente y conservar evidencia
+3,RD,E2,parcial,docs/requisitos/catalogo.md,Falta validación de criterios por E2,Revisar oráculo y reglas
+3,TS,E3,parcial,docs/gestion/diseno.md y decision-sqlite.md,Falta revisión del diseño por el equipo,Revisar interfaces y decisión
+3,PI,E5,parcial,tests/test_paginas.py,Falta evidencia real de integración y copia limpia,Ejecutar pruebas y reproducción
+3,VER,E4,parcial,tests/ y evidencias/revision.md,Falta ejecución y revisión por pares,Guardar salida real y dictamen
+3,VAL,E2,no evidenciada,evidencias/validacion.md,Falta escenario observado y decisión de usuario simulado,Ejecutar guion completo
+3,OPF,E1,parcial,docs/proceso/proceso-v2.md,Falta evaluar eficacia de mejora NC01,Comparar primera y segunda revisión
+3,OPD,E1,parcial,docs/proceso/proceso-v1.md y plantillas.md,Falta adopción y aprobación del estándar,Aprobar y reutilizar
+3,OT,E2,no evidenciada,docs/proceso/formacion.md,Faltan sesión asistencia y cinco comprobaciones,Realizar formación
+3,IPM,E1,parcial,docs/proceso/adaptacion.md,Faltan compromisos compartidos y coordinación observada,Identificar integrantes y registrar acuerdos
+3,RSKM,E1,parcial,docs/gestion/riesgos.csv,Falta seguimiento y eficacia de respuestas,Revisar riesgos en dos cortes
+3,DAR,E3,parcial,docs/gestion/decision-sqlite.md,Falta revisión participativa de criterios,Registrar decisión del equipo

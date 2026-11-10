@@ -1,0 +1,3 @@
+...................................................                      [100%]
+- generated xml file: C:\Users\36nue\Documents\CURSOS - 2026-B\CALIDAD DE SOFWTARE\PROYECTO-ENFERMEDADES\evidencias\pytest-20261110T143207Z.xml -
+51 passed in 3.73s

@@ -1,0 +1,1 @@
+{% macro stat(label, value, note, symbol, color='teal') %}<article class="stat-card"><div class="stat-top"><span>{{ label }}</span><span class="stat-icon {{ color }}" aria-hidden="true">{{ symbol }}</span></div><div class="stat-value">{{ value }}</div><div class="stat-note">{{ note }}</div></article>{% endmacro %}

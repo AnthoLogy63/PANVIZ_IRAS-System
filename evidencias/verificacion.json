@@ -1,0 +1,30 @@
+{
+  "fecha_utc": "20261110T143207Z",
+  "python": "3.11.0",
+  "plataforma": "Windows-10-10.0.26200-SP0",
+  "pytest_exit_code": 0,
+  "junit": "pytest-20261110T143207Z.xml",
+  "comando": [
+    "C:\\Users\\36nue\\Documents\\CURSOS - 2026-B\\CALIDAD DE SOFWTARE\\PROYECTO-ENFERMEDADES\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "--junitxml=C:\\Users\\36nue\\Documents\\CURSOS - 2026-B\\CALIDAD DE SOFWTARE\\PROYECTO-ENFERMEDADES\\evidencias\\pytest-20261110T143207Z.xml"
+  ],
+  "aprobaciones_humanas": "pendientes",
+  "source_sha256": "83d5e3e41d5524acb7c54e9410443cba0e60fdc0096c46b781bd0ce5653a0955",
+  "Flask": "3.1.2",
+  "pytest": "8.4.2",
+  "oraculo": {
+    "aceptados": 15,
+    "rechazados": 5,
+    "consolidados": 15,
+    "diferencia": 0,
+    "deteccion_errores_porcentaje": 100.0,
+    "por_distrito": {
+      "Lima": 5,
+      "Ate": 5,
+      "Comas": 5
+    }
+  }
+}

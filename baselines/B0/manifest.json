@@ -1,0 +1,171 @@
+{
+  "perfil": "B0 funcional, sin CR01 habilitado",
+  "fecha_creacion": "2026-11-10",
+  "aprobacion_academica": "pendiente",
+  "files": [
+    {
+      "path": "datos/entrada/notificaciones_iras.csv",
+      "sha256": "30f09d2eb038af92970d95e37fd109031396fb961c58fe66c333d7f8ab747634"
+    },
+    {
+      "path": "datos/entrada/oraculo.json",
+      "sha256": "89ed7381d41117bb22107ee7cc9795689b12e45be6273ad1871cfccd12d47fa6"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "62bd006048e5c5c8d0717ef886949727af9be851e8212a02212e265047a01578"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "0eacd746528385dc5f7e71ff8837d8f09da313abf861c6c141b698a9659a8324"
+    },
+    {
+      "path": "run.py",
+      "sha256": "a3ed8864f79f70bc64ad17dd0df5d264f29d1544f85fc68547aa60f4c49d176c"
+    },
+    {
+      "path": "scripts/preparar_assets.py",
+      "sha256": "35334879537e9b241e7140d543a58d07e27796a1acb3af826655c835dff35145"
+    },
+    {
+      "path": "src/panviz/config.py",
+      "sha256": "7779c28eadd02d862d016925b8a9809980882ee9c9f5a5ed54241aa2c77a2e5a"
+    },
+    {
+      "path": "src/panviz/db.py",
+      "sha256": "2975a1c8dbd7fe00707045c9f3785d0a8487000964ed66cef0b58c491a7dafe2"
+    },
+    {
+      "path": "src/panviz/routes/dashboard.py",
+      "sha256": "e13bd4c9d82edcc3fa6970c5671c47b73fe3b898a8e19067ad1b6ed00787054f"
+    },
+    {
+      "path": "src/panviz/routes/importacion.py",
+      "sha256": "77d3e1d39373c1fe488c3e365d8ba5bb3a7ac06281c07aa53ab21a83c3c1d03c"
+    },
+    {
+      "path": "src/panviz/routes/reportes.py",
+      "sha256": "d3e670b5ddd9badbd7bfb2b736158201a04db9f3b5457378a03f52751391f797"
+    },
+    {
+      "path": "src/panviz/routes/validacion.py",
+      "sha256": "c4f631469e2b4bcd439851b1fd22f514abc96c04ed0a96b2c62f63e79512b21c"
+    },
+    {
+      "path": "src/panviz/routes/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/panviz/services/consolidation_service.py",
+      "sha256": "23bdb7e40530fa5ec3f887ad6414abab69c9d361adc68a38a2f20c08ee6be564"
+    },
+    {
+      "path": "src/panviz/services/csv_service.py",
+      "sha256": "a2bb7a23284d17998a60d948bf80d5ed0ae1d1f2e0418347d2c44ecbb549f9df"
+    },
+    {
+      "path": "src/panviz/services/export_service.py",
+      "sha256": "aa3fa81f3a69012e03806f5a7ab0af7d5ad0a4aab0cc4c78e2a8ee8805460b7d"
+    },
+    {
+      "path": "src/panviz/services/validation_service.py",
+      "sha256": "9dde08c5e7005bc28320096d0b3476ebb3e56bfc96c5ddc4eacc67bb7a734066"
+    },
+    {
+      "path": "src/panviz/services/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/panviz/static/css/styles.css",
+      "sha256": "3761215c76bf23a57884206ec415896b04ebebc330d320af5380be00a4c15d01"
+    },
+    {
+      "path": "src/panviz/static/img/mark.svg",
+      "sha256": "b31c3141dce35e2f0ce2df0a3d568b15155c15fc07f5ecad2ce374e7f2f4519f"
+    },
+    {
+      "path": "src/panviz/static/js/app.js",
+      "sha256": "9be8d2f89f52564ab7682f68ee24be998084b3ea87caec00d22a14a501d1fba3"
+    },
+    {
+      "path": "src/panviz/static/js/charts.js",
+      "sha256": "72db8d6fba212d06d02fdc0705c8dd27bae21daa8af42d8cd668858585fc2456"
+    },
+    {
+      "path": "src/panviz/static/vendor/README.md",
+      "sha256": "8e170f269858951e1e952cc70811e1f910362a48b180cce9456e707ff300bc9c"
+    },
+    {
+      "path": "src/panviz/templates/base.html",
+      "sha256": "57fb7adbc9b624ffb69e5b7ec3d1bb9e673dd7f00099c8055ba4e7e696ef7235"
+    },
+    {
+      "path": "src/panviz/templates/components/filters.html",
+      "sha256": "3a5246eadb3f8ef7ce5da6f46d2e3b9522326347124b6bbc56bcbf7f3e66ce06"
+    },
+    {
+      "path": "src/panviz/templates/components/navbar.html",
+      "sha256": "c7b3b3dfa2dd9da5ddde488739eb79d7ece89683ca32c4cff968c550e806a26f"
+    },
+    {
+      "path": "src/panviz/templates/components/sidebar.html",
+      "sha256": "b82479c0ac5f8e602ec83e55c39ed18021673ac4d34fc369043f96718bd3dff2"
+    },
+    {
+      "path": "src/panviz/templates/components/stat_card.html",
+      "sha256": "439dc9d14c6a033a69ee0be642a2cbbd2795de39ce5c78fabda94c12434acbd4"
+    },
+    {
+      "path": "src/panviz/templates/dashboard.html",
+      "sha256": "c675c284590e2c544ea8dc8fbec47cc004e165b4119bc7deea520874d98194b7"
+    },
+    {
+      "path": "src/panviz/templates/error.html",
+      "sha256": "49e3cd840015ad9bdd35811559e4b041784060ecc3ab49df3503ac494d9b3b33"
+    },
+    {
+      "path": "src/panviz/templates/importacion.html",
+      "sha256": "32ac1788b8d944d64a4160ef44248c3c7b8e53babfdee190712ee325b07bf7ae"
+    },
+    {
+      "path": "src/panviz/templates/reportes.html",
+      "sha256": "c906b613c37e4a1980e08176a99861d4eae569afde8e6184bdf32ae4f97c735b"
+    },
+    {
+      "path": "src/panviz/templates/validacion.html",
+      "sha256": "8ebd36cd54d54d964dc0ca492f9c4cf10f8a1bc9b9c6866df42f50e86ed3516d"
+    },
+    {
+      "path": "src/panviz/__init__.py",
+      "sha256": "41b921c59169b2677f22721d33b28a823cf4cd715937150c62a7e8847944c982"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "3ea25644a4c1df43aadcf066aeec788612f816a47482da12b7a78b5b7524321a"
+    },
+    {
+      "path": "tests/test_consolidacion.py",
+      "sha256": "e8a5addf800b1698f5860527ce605bfd1e184b0c17f5bd4b0eb2045676ac507e"
+    },
+    {
+      "path": "tests/test_exportacion.py",
+      "sha256": "e2dd5e05e3601b6584066f5be2713222a7f61bb1af4e7d7b5ce5acc313fac7e8"
+    },
+    {
+      "path": "tests/test_importacion.py",
+      "sha256": "329b33d90e2a70991dcc9c7535ed14ad15383090c5c77f7659ef18f3f7e63582"
+    },
+    {
+      "path": "tests/test_paginas.py",
+      "sha256": "0dcbb4c051e59e55c158c5cc50e02bf52d845a36e6324f275ba5a1ad4c90f66d"
+    },
+    {
+      "path": "tests/test_validacion.py",
+      "sha256": "9f38a849c6f84585dad603cb02b7d0c2c0806bc36b5dfdbabf7d503a74315d17"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ca1284327c3385d83bd3e1f12d8cdb906173a2c0b1c816ca28b44724dd246bfb"
+    }
+  ]
+}

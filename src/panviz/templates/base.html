@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c42"><meta name="description" content="PANVIZ IRAS: vigilancia académica de infecciones respiratorias con datos sintéticos.">
+  <title>{{ title }} · PANVIZ IRAS</title>
+  <link rel="icon" href="{{ url_for('static', filename='img/mark.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/tailwind.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+{% include 'components/sidebar.html' %}
+<div class="workspace">
+  {% include 'components/navbar.html' %}
+  <main id="main" tabindex="-1">
+    <div class="page-heading flex flex-wrap gap-5"><div><div class="eyebrow">VIGILANCIA EPIDEMIOLÓGICA / IRAS</div><h1>{{ title }}</h1><p>{{ subtitle }}</p></div><div class="heading-actions">{% block actions %}{% endblock %}</div></div>
+    <div aria-live="polite">{% for category, message in get_flashed_messages(with_categories=true) %}<div class="notice {{ category }}" role="status">{{ message }}<button type="button" class="dismiss" aria-label="Cerrar notificación">×</button></div>{% endfor %}</div>
+    {% block content %}{% endblock %}
+    <footer><span>PANVIZ IRAS · Piloto académico de calidad de software</span><span>Datos sintéticos · v{{ version }}</span></footer>
+  </main>
+</div>
+</body></html>

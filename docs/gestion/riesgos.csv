@@ -1,0 +1,5 @@
+id,riesgo,probabilidad,impacto,respuesta,dueno,estado
+RK01,Entorno Python no preparado,media,alto,Comandos agrupados y ejecutable venv sin activar,E5,abierto
+RK02,Doble carga del mismo CSV,alta,medio,ID único y revalidación transaccional; documentar oráculo segunda carga,E3,mitigación implementada pendiente de prueba
+RK03,Evidencias no ejecutadas confundidas con aprobadas,alta,alto,Estados pendientes explícitos y salida real de verificar.py,E4,abierto
+RK04,Dependencias frontend sin internet,media,medio,Descargar una vez y servir localmente; datos tabulados alternativos,E5,abierto hasta preparar_assets.py

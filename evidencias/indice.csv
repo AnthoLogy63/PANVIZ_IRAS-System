@@ -1,0 +1,8 @@
+id,area,ruta,version,autor,revisor,estado
+EV01,REQM;RD,docs/requisitos/trazabilidad.csv,1.0,sin registrar,pendiente,preparado
+EV02,VER;MA,evidencias/verificacion.json,0.1,pendiente,E4;E5,pendiente de ejecución
+EV03,PPQA;VER,evidencias/revision.md,0.1,pendiente,E4,pendiente
+EV04,VAL,evidencias/validacion.md,0.1,pendiente,E2,pendiente
+EV05,CM,evidencias/liberacion.md,0.1,pendiente,E1;E5,pendiente
+EV06,OT,evidencias/formacion.csv,1.0,pendiente,E2,pendiente
+EV07,OPF;PPQA,evidencias/NC01.md,2.0,sin registrar,E4 pendiente,corrección estática realizada; eficacia pendiente
