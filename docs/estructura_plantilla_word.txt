@@ -1,0 +1,523 @@
+
+PARTE word/header1.xml
+[0] [] UNIVERSIDAD NACIONAL DE SAN AGUSTÍN
+[1] [] FACULTAD DE INGENIERÍA PRODUCCIÓN Y SERVICIOS
+[2] [] ESCUELA PROFESIONAL DE INGENIERÍA DE SISTEMAS
+
+PARTE word/footer1.xml
+
+PARTE word/document.xml
+[6] [] EXAMEN 2:
+[7] [] Análisis, Diseño y Propuesta de Rediseño del Muro de Anuncios
+[8] [] Introducción al Desarrollo de Nuevas Plataformas
+[12] [] AUTOR(ES):
+[13] [] AJRA HUACSO, JEANS ANTHONY
+[14] [] HANCCO MULLISACA, SERGIO DANILO    
+[15] [] HUACANI JARA, DENISE ANDREA
+[16] [] VALDIVIA SEGOVIA RYAN FABIAN
+[18] [] DOCENTE:
+[19] [] Ernesto Mauro Suarez Lopez
+[21] [] CURSO:
+[22] [] Introducción al desarrollo de nueva plataformas
+[25] [] LUGAR:
+[26] [] AREQUIPA, PERÚ
+[28] [] FECHA:
+[29] [] 8-11-2026
+[31] [Heading1] ANÁLISIS DE LA INTERFAZ ACTUAL
+[32] [Heading1] Organización y distribución de los elementos visuales
+[33] [] En este apartado se evalúa la disposición espacial de los componentes de la interfaz, las proporciones de los contenedores y su capacidad de adaptación a diferentes tamaños de pantalla y orientaciones del dispositivo.
+[35] [] Dimensionamiento rígido de las tarjetas
+[37] [] Las tarjetas (MessageCard) tienen una altura fija de 220 dp, lo que impide adaptarse correctamente a pantallas con menor espacio vertical. En orientación horizontal, solo se visualizan 103 dp en resoluciones medianas y 72 dp en pequeñas, provocando que datos como el autor, la fecha y los comentarios queden ocultos.
+[39] [] Aprovechamiento inadecuado del espacio horizontal
+[41] [] En orientación horizontal (914 y 997 dp), las tarjetas ocupan todo el ancho disponible sin establecer un límite máximo. Esto genera espacios vacíos excesivos y separa visualmente el contenido de la fecha de publicación.
+[43] [] Cabecera sobredimensionada y falta de alineación
+[45] [] El componente SearchBoxComponent tiene una altura fija de 100 dp y añade aproximadamente 76 dp de espacio adicional. En pantallas de 360 dp de altura, la cabecera puede ocupar hasta el 48 % del espacio disponible. Además, existen diferencias en los márgenes horizontales (8, 10 y 12 dp) y en la distribución de los elementos internos.
+[60] [] Figura: (997×448 dp · Horizontal). Tarjeta estirada a 997 dp, recorte inferior y fecha dispersa
+[62] [Heading1] Selección, ubicación y utilización de componentes visuales
+[63] [] Se evalúa la consistencia de los componentes visuales, considerando la tipografía, los colores, la identificación de autores y la jerarquía de los elementos interactivos.
+[65] [] Jerarquía tipográfica poco diferenciada
+[67] [] Los tamaños de texto presentan diferencias reducidas entre metadatos (16 sp), contenido (18 sp) y títulos (24 y 26 sp). Además, no se definen roles tipográficos específicos para elementos secundarios y el cuerpo utiliza una tipografía Serif con un interlineado de 1.2.
+[69] [] Inconsistencia en los avatares y el contador de comentarios
+[71] [] Los avatares utilizan colores aleatorios mediante Random.nextFloat(), por lo que cambian al actualizar o desplazar la interfaz. El contador de comentarios también presenta estilos diferentes entre su icono, cantidad y texto.
+[73] [] Botón flotante poco destacado y superposición de contenido
+[75] [] En el botón flotante (FAB) no se reserva espacio inferior en la lista (LazyColumn), provocando que se superponga con las tarjetas en 5 de las 6 resoluciones evaluadas.
+[95] [] Figura: (914×411 dp · Horizontal). Pérdida de pie, FAB tapando fecha y contraste insuficiente.
+[97] [Heading1] Facilidad de interacción del docente con las funcionalidades
+[98] [] Superposición de áreas táctiles y pulsaciones accidentales
+[100] [] Impacto en el docente: Puede seleccionar el botón de publicación cuando intenta acceder a los comentarios de un anuncio, interrumpiendo su actividad y generando acciones no deseadas.
+[102] [] Falta de diferenciación entre anuncios y niveles de prioridad
+[104] [] Las publicaciones presentan un tratamiento visual similar, sin distinguir claramente entre anuncios públicos, privados o de carácter urgente. 
+[106] [] Limitaciones de interacción en pantallas pequeñas y horizontales
+[108] [] Impacto en el docente: Dificulta realizar consultas y gestionar publicaciones desde dispositivos compactos o cuando se utiliza el teléfono en orientación horizontal.
+[110] [] Ambigüedad de los elementos interactivos
+[112] [] Impacto en el docente: Genera titubeos durante la navegación; el docente no tiene certeza sobre qué partes de la tarjeta son presionables, entorpeciendo el seguimiento de dudas estudiantiles.
+[119] [] Figura: (640×360 dp · Horizontal). Cabecera del 48%, ventana útil de 72 dp y FAB bloqueando interacción
+[121] [Heading1] PROPUESTA DE SOLUCIONES
+[122] [Heading2] Problema 1: Envío de Anuncios Públicos y Privados
+[123] [] La pregunta de diseño de este problema es: ¿cómo diseñar la interacción para que el docente pueda enviar anuncios públicos o privados sin complicar la interfaz ni confundirse sobre quién recibirá el anuncio? A esto se suma que el docente debe poder marcar cada anuncio con una prioridad (alta, media o baja). Las alternativas se comparan con los tres criterios del enunciado: simplicidad, claridad de las interacciones y prevención de errores, en especial el error de enviar un anuncio a quien no corresponde.
+[124] [] Cómo se envía hoy un anuncio
+[125] [] Al revisar el código base entregado (proyecto AlertaUNI) se observa que el envío está repartido en dos lugares distintos de la aplicación.
+[126] [] Aspecto
+[127] [] Anuncio público
+[128] [] Anuncio privado
+[129] [] Dónde se inicia
+[130] [] Pestaña Posts, botón flotante (+)
+[131] [] Pestaña Contactos: se elige el curso y se toca a un estudiante de la lista
+[132] [] Componente
+[133] [] AddPostDialog
+[134] [] AddCommentPrivateDialog
+[135] [] Campos
+[136] [] Curso (menú desplegable), título y contenido (máx. 280 caracteres)
+[137] [] Estudiante (ya elegido, no editable), título y contenido (máx. 280 caracteres)
+[138] [] Modelo enviado
+[139] [] PostRequest con is_private = false fijo en PostViewModel.sendPost
+[140] [] PostPrivateRequest con receiver_private = id del estudiante
+[141] [] El diseño actual presenta los siguientes problemas:
+[142] [] El muro no permite enviar anuncios privados. El botón (+) solo crea anuncios públicos; el docente que quiere preguntarle a un estudiante por su inasistencia debe saber que existe la pestaña Contactos, que no sugiere «enviar anuncio».
+[143] [] La decisión entre público y privado no existe como elección. Depende de por dónde entra el docente y ningún control indica para quién es el anuncio.
+[144] [] Hay dos formularios casi idénticos (título, contenido y botones) en dos pantallas distintas, lo que duplica el mantenimiento y puede desalinearlos con el tiempo.
+[145] [] Ambos formularios son AlertDialog, un contenedor pensado para mensajes cortos. Agregar destinatario y prioridad lo vuelve incómodo con el teclado abierto.
+[146] [] No existe el concepto de prioridad en la interfaz, en PostRequest, PostPrivateRequest y PostEntity, ni en las funciones del servidor (service-post-add y service-post-private-add).
+[147] [] El tipo de anuncio se distingue solo con texto. En la tarjeta del muro aparece un texto gris pequeño («Privado» o «Público»), sin diferencia visual real.
+[148] [] Dos fragmentos del código base muestran los hallazgos 1 y 6:
+[149] [] // PostViewModel.sendPost: el muro solo crea anuncios públicos
+[150] [] PostRequest(course_catalog_id, title, content, is_private = false, allow_comments)
+[151] [] // PostScreen.kt: el tipo se muestra solo como texto
+[152] [] text = if (announce.isPrivate) "Privado" else "Público",
+[153] [] Las siguientes capturas corresponden a la aplicación original ejecutada en el emulador Android en modo demostración, sin conexión al servidor.
+[158] [] Figura: Muro de anuncios actual: el tipo aparece como texto gris y no hay prioridad.
+[159] [] Figura: Formulario «Nuevo Anuncio» actual (solo público): curso, título y contenido.
+[160] [] Figura: Pestaña Contactos: lista de estudiantes con el icono de enviar.
+[161] [] Figura: Anuncio privado: solo se puede crear desde Contactos.
+[162] [] Con este diagnóstico quedan tres decisiones por resolver: (a) cómo se elige entre público y privado, (b) cómo se elige al estudiante cuando el anuncio es privado y (c) cómo se establece la prioridad.
+[163] [] Alternativas de solución
+[164] [] Alternativa A: mantener los dos puntos de entrada y mejorarlos
+[165] [] Se conserva la estructura actual: el botón (+) del muro crea anuncios públicos y, en Contactos, se toca a un estudiante para enviarle uno privado. Solo se agrega la prioridad (botones de selección Alta, Media y Baja) a ambos formularios, junto con mejores etiquetas e iconos.
+[166] [] Ventajas:
+[167] [] Cambio mínimo y bajo riesgo.
+[168] [] El envío privado llega con el estudiante ya seleccionado, por lo que es difícil equivocarse de destinatario.
+[169] [] Aprovecha el código existente.
+[170] [] Limitaciones:
+[171] [] El docente sigue sin descubrir cómo enviar un anuncio privado desde el muro.
+[172] [] Se mantiene la duplicación de formularios y la prioridad debe implementarse dos veces.
+[173] [] El muro, donde se ven los anuncios privados, no es el lugar donde se crean.
+[177] [] Figura: Alternativa A: muro con candado en los anuncios privados y prioridad por color y texto.
+[178] [] Figura: Alternativa A: formulario público con prioridad.
+[179] [] Figura: Alternativa A: formulario privado con prioridad; sigue en otra pantalla.
+[180] [] Alternativa B: formulario único con selector de audiencia
+[181] [] Un solo formulario, abierto desde el botón (+) del muro (pantalla completa o panel inferior alto), con los siguientes elementos en este orden:
+[182] [] Curso (menú desplegable).
+[183] [] Audiencia: control segmentado con dos opciones, «Todo el curso» y «Un estudiante».
+[184] [] Si la audiencia es «Un estudiante», aparece un selector con búsqueda de los estudiantes de ese curso (se reutiliza getStudentByCourse, que ya existe).
+[185] [] Prioridad: tres botones de selección única, Alta, Media y Baja, con Media por defecto.
+[186] [] Título y contenido.
+[187] [] Resumen del destinatario sobre el botón Publicar, por ejemplo «Se enviará a: todos los estudiantes del curso» o «Se enviará solo a: Ana Torres».
+[188] [] El acceso desde Contactos se mantiene como atajo: abre el mismo formulario con «Un estudiante» y el alumno ya seleccionado.
+[189] [] Ventajas:
+[190] [] Un solo formulario y un solo lugar para publicar.
+[191] [] La audiencia es una decisión explícita y visible, y el caso más común (anuncio público) no requiere pasos extra.
+[192] [] El resumen evita dudas sobre quién recibe el anuncio, y la audiencia puede corregirse sin perder lo escrito.
+[193] [] La prioridad se implementa una sola vez.
+[194] [] Limitaciones:
+[195] [] El formulario es más largo, por lo que hay que cuidar el orden de los campos y el desplazamiento.
+[196] [] Al cambiar de curso hay que reiniciar el estudiante elegido.
+[197] [] Requiere refactorizar ambos diálogos y el flujo de envío en el ViewModel.
+[202] [] Figura: Alternativa B: formulario vacío; el botón Publicar está deshabilitado.
+[203] [] Figura: Alternativa B con «Todo el curso» y su resumen de destinatario.
+[204] [] Figura: Alternativa B con «Un estudiante»: selector con búsqueda de los estudiantes del curso.
+[205] [] Figura: Alternativa B con estudiante elegido y prioridad Alta: «Se enviará solo a: Ana Torres».
+[208] [] Figura: Resultado en el muro: anuncio privado con candado y prioridad ALTA.
+[209] [] Se aprecia la prevención de errores: Publicar permanece deshabilitado hasta completar el formulario y, en modo privado, hasta elegir un estudiante.
+[210] [] Alternativa C: botón flotante desplegable con dos acciones
+[211] [] El botón (+) del muro se expande en dos opciones: «Anuncio al curso» y «Mensaje a un estudiante». Cada una abre su propio formulario, y el segundo exige elegir un estudiante.
+[212] [] Ventajas:
+[213] [] Cada formulario es más simple, sin campos condicionales.
+[214] [] La intención se declara desde el primer toque.
+[215] [] El envío privado pasa al muro, lo que resuelve la dificultad de encontrarlo.
+[216] [] Limitaciones:
+[217] [] Sigue habiendo dos formularios casi iguales.
+[218] [] Si el docente elige mal, debe cancelar y empezar de nuevo, perdiendo lo escrito.
+[219] [] Las acciones quedan ocultas hasta abrir el menú.
+[222] [] Figura: Alternativa C: botón flotante desplegado con dos acciones.
+[223] [] Figura: Alternativa C: formulario «Mensaje a un estudiante».
+[224] [] También se consideró un asistente por pasos, pero se descartó desde el inicio: publicar es una acción frecuente y varios pasos para un anuncio público son un costo sin beneficio.
+[225] [] Comparación de alternativas
+[226] [] Criterio
+[227] [] A: mantener y mejorar
+[228] [] B: formulario único con selector
+[229] [] C: botón flotante con dos acciones
+[230] [] Descubribilidad del envío privado desde el muro
+[231] [] Baja (está en otra pestaña)
+[232] [] Alta
+[233] [] Media
+[234] [] Simplicidad (caso público)
+[235] [] Alta
+[236] [] Alta (sin pasos extra)
+[237] [] Media (un toque adicional)
+[238] [] Claridad sobre quién recibe el anuncio
+[239] [] Media
+[240] [] Alta (selector y resumen)
+[241] [] Media-alta
+[242] [] Prevención de errores
+[243] [] Media-alta (estudiante preseleccionado)
+[244] [] Alta (resumen, botón deshabilitado, reinicio al cambiar de curso)
+[245] [] Media
+[246] [] Corregir la audiencia sin perder lo escrito
+[247] [] No
+[248] [] Sí
+[249] [] No
+[250] [] Duplicación de formularios
+[251] [] Sí (2)
+[252] [] No (1)
+[253] [] Sí (2)
+[254] [] Esfuerzo de implementación
+[255] [] Bajo
+[256] [] Medio
+[257] [] Medio-alto
+[258] [] Alternativa seleccionada: B, formulario único con selector de audiencia
+[259] [] Se elige la alternativa B por las siguientes razones:
+[260] [] Resuelve la causa raíz detectada en el código. Hoy «público o privado» depende de por dónde se entra y no de una decisión visible. En B pasa a ser un control explícito con etiquetas en el lenguaje del docente («Todo el curso» y «Un estudiante»).
+[261] [] Mantiene la simplicidad. Hay un único formulario; el campo de estudiante aparece solo cuando se necesita y la prioridad tiene un valor por defecto (Media), de modo que no agrega un paso obligatorio.
+[262] [] Previene el envío a quien no corresponde. Publicar queda deshabilitado hasta elegir un estudiante cuando el anuncio es privado; al cambiar de curso se limpia el estudiante elegido; el resumen «Se enviará a…» es la última verificación antes de enviar; y en el muro el anuncio privado se distingue con un candado y un color, no solo con texto gris.
+[263] [] Tiene un costo razonable. Reutiliza el menú de cursos, la lista de estudiantes por curso y los campos de título y contenido (con límite de 280 caracteres), y elimina la duplicación. A sería más barata pero no resuelve el problema, y C mantiene dos formularios.
+[264] [] Decisiones complementarias de diseño
+[265] [] Decisión
+[266] [] Motivo
+[267] [] Control segmentado en lugar de un Switch «Privado»
+[268] [] El switch es ambiguo (¿qué significa «apagado»?); dos etiquetas explícitas no dejan dudas.
+[269] [] Prioridad con tres botones de color y texto
+[270] [] Un toque, siempre visibles; el texto evita depender solo del color (accesibilidad).
+[271] [] Selector de estudiante con búsqueda, filtrado por curso
+[272] [] Es más rápido que un menú largo cuando hay muchos alumnos.
+[273] [] Resumen del destinatario sobre «Publicar»
+[274] [] Verificación en lenguaje natural antes de enviar.
+[275] [] Formulario en pantalla completa o panel inferior en lugar de AlertDialog
+[276] [] Hay más campos y el teclado queda abierto; el diálogo actual se queda corto.
+[277] [] En el prototipo, la prevención de errores se expresa en pocas líneas: el botón Publicar solo se habilita cuando el formulario es válido.
+[278] [] enum class Audience { COURSE, STUDENT }
+[279] [] enum class Priority { HIGH, MEDIUM, LOW }
+[280] [] val isValid = course != null && title.isNotBlank() && content.isNotBlank() &&
+[281] [] (audience == Audience.COURSE || student != null)
+[282] [] Impacto técnico y alcance del prototipo
+[283] [] Para soportar la prioridad hay que agregar el campo priority a PostRequest, PostPrivateRequest y PostEntity, y a las funciones del servidor service-post-add y service-post-private-add. Además, el envío se unifica en PostViewModel, que según la audiencia invoca service-post-add o service-post-private-add.
+[284] [] Las capturas de esta sección provienen de un prototipo en Jetpack Compose donde se implementaron las tres alternativas sobre el código base. El prototipo funciona en modo demostración: el servidor es simulado en memoria, los datos (cursos, estudiantes y anuncios) son de ejemplo, las funciones del servidor no se modificaron para guardar la prioridad y el selector de estudiantes devuelve los mismos tres estudiantes para cualquier curso.
+[286] [Heading2] Problema 2: Visualización y Búsqueda de Anuncios
+[287] [] La pregunta de diseño de este problema es: ¿cómo organizar y presentar los anuncios para que el docente pueda consultar su información y encontrar rápidamente una publicación entre numerosos anuncios? El objetivo no consiste en añadir controles indiscriminadamente, sino en permitir localizar una publicación, reconocer su curso, visibilidad y prioridad, y acceder a sus comentarios sin confusión. Las alternativas se evaluarán según simplicidad, claridad de las interacciones y prevención de errores, además de viabilidad técnica.
+[288] [] Cómo se visualizan y buscan hoy los anuncios
+[289] [] La revisión del código base de AlertaUNI muestra que PostScreen obtiene la lista de anuncios desde PostViewModel y la entrega directamente a BoardLayout y AnnounceList. Esta última utiliza una LazyColumn para mostrar cada MessageCard, sin aplicar búsquedas, filtros ni un ordenamiento propio de la interfaz. El componente SearchBoxComponent contiene un campo «Buscar...», pero su estado query permanece local y no modifica la lista.
+[290] [] La presentación actual sí incluye el código del curso, el tipo «Público» o «Privado», título, contenido, fecha y número de comentarios. Sin embargo, PostEntity no contiene los atributos de prioridad ni archivado, el nombre completo del curso no se aprovecha en las tarjetas y la fecha se muestra como texto recibido del repositorio. Al pulsar cualquier zona de una tarjeta se abre la conversación de comentarios, sin una vista independiente de detalle.
+[291] [] Problemas detectados en la implementación actual
+[292] [] La búsqueda es aparente, pero no funcional. SearchBoxComponent guarda query mediante remember y no expone un callback; BoardLayout recibe searchQuery, pero no lo utiliza para filtrar los anuncios. El docente escribe y continúa viendo la misma lista.
+[293] [] No hay criterios de filtrado ni ordenamiento accesibles. El muro no ofrece filtros por curso o tipo de anuncio ni controles para ordenar por fecha; los anuncios se muestran en el orden devuelto por el repositorio. Aunque ya se carga un catálogo de cursos, no se emplea para filtrar.
+[294] [] Las tarjetas tienen una altura fija de 220 dp, sin límites de líneas ni truncamiento para título y contenido. Los textos extensos pueden desplazar la fecha, el autor y la acción de comentarios fuera del área visible; en horizontal, la cabecera de 100 dp y la barra inferior reducen aún más el espacio útil.
+[295] [] La lectura no está separada de la conversación. La tarjeta completa es pulsable y abre directamente Comentarios, donde no se presenta el título ni el contenido del anuncio original. Esto dificulta consultar información completa y conservar el contexto del intercambio.
+[296] [] Falta retroalimentación durante la búsqueda y la carga. La lista vacía no distingue «sin anuncios» de «sin coincidencias»; los errores de carga se registran en Logcat y el estado de carga no se representa visualmente en PostScreen.
+[297] [] La información relevante no está jerarquizada de forma suficiente. El tipo de anuncio figura como texto pequeño, el código del curso puede ser numérico y no hay una etiqueta de prioridad. El avatar usa un color aleatorio en cada recomposición, lo que resta estabilidad visual.
+[298] [] El archivado todavía no existe. No hay campo de estado, acción de archivo ni vista de archivados; por tanto, no es correcto presentar esa función como implementada. Su incorporación real requeriría cambios de datos y servicios.
+[299] [] La causa principal del fallo de búsqueda puede comprobarse en dos puntos del código:
+[300] [] // SearchBoxComponent.kt: query se actualiza solo dentro del componente
+[301] [] val query = remember { mutableStateOf("") }
+[302] [] onValueChange = { query.value = it }
+[303] [] // PostScreen.kt: la consulta no se transmite a SearchBoxComponent
+[304] [] SearchBoxComponent(username, title)
+[305] [] AnnounceList(notificacionesFiltradas, onClickComment)
+[306] [] Estas evidencias corresponden al código inspeccionado, no a resultados de pruebas con usuarios. Las siguientes fotografías quedan reservadas para documentar el muro original, el cuadro «Buscar...» y la apertura de comentarios.
+[310] [] Figura: Muro actual: anuncios sin filtros visibles.
+[311] [] Figura: Cuadro «Buscar...» actual: texto sin filtrado.
+[312] [] Figura: Al pulsar la tarjeta se abren Comentarios.
+[314] [] Con este diagnóstico deben resolverse tres decisiones: (a) cómo realizar una búsqueda que sí modifique los resultados, (b) qué filtros mostrar sin saturar la pantalla y (c) cómo resumir cada anuncio sin ocultar información ni provocar accesos accidentales.
+[315] [] Alternativas de solución
+[316] [] Alternativa A: conservar el muro y activar la búsqueda sencilla
+[317] [] Se mantiene casi toda la estructura actual: cabecera con botón de búsqueda, lista vertical y tarjetas de anuncios. La consulta introducida se conecta al estado de PostScreen o PostViewModel y filtra, sobre los anuncios ya cargados, coincidencias en título y contenido; se añade un mensaje de «Sin resultados» y la opción de borrar la búsqueda. Las tarjetas dejan de tener una altura rígida y se mejora la identificación del tipo de anuncio, pero no se incorporan filtros adicionales visibles.
+[318] [] Ventajas:
+[319] [] Cambio acotado y bajo esfuerzo de implementación; aprovecha SearchBoxComponent, LazyColumn y los datos existentes.
+[320] [] Conserva una interfaz familiar y permite encontrar textos concretos sin salir del muro.
+[321] [] Puede funcionar localmente sin modificar la Edge Function service-posts, siempre que los anuncios ya hayan sido recuperados.
+[322] [] Limitaciones:
+[323] [] Para consultar solo un curso o anuncios privados es necesario escribir términos y revisar resultados manualmente.
+[324] [] La cabecera sigue ocultando el campo hasta tocar la lupa; encontrar y restablecer criterios depende de esa interacción.
+[325] [] Con muchas publicaciones, la búsqueda textual sola no facilita combinar condiciones ni navegar entre resultados relevantes.
+[329] [] Figura: Alternativa A: lista original con búsqueda activa.
+[330] [] Figura: Alternativa A: resultados de búsqueda textual.
+[331] [] Figura: Alternativa A: tarjeta de altura adaptable.
+[332] [] Alternativa B: muro compacto con búsqueda visible y filtros contextuales
+[333] [] Se propone una cabecera compacta con un campo de búsqueda visible («Buscar anuncios») y filtros horizontales por Curso, Tipo, Prioridad y orden cronológico («Más recientes / Más antiguos»).
+[334] [] Los anuncios se presentarán en tarjetas de altura adaptable, mostrando el curso, tipo, título, descripción breve, prioridad, fecha y cantidad de comentarios. Al seleccionar una tarjeta, se accederá al contenido completo, manteniendo «Comentarios» como una acción independiente. También se incluirá un botón «Limpiar filtros» y mensajes informativos cuando no existan resultados.
+[335] [] La prioridad y el archivado se consideran funcionalidades propuestas, cuya implementación requiere ampliar el backend. Por otro lado, la búsqueda y el filtrado podrán realizarse en memoria sobre los anuncios previamente cargados, sin incluir publicaciones aún no recuperadas del servidor.
+[336] [] Ventajas:
+[337] [] La búsqueda está a la vista y las opciones «Curso» y «Tipo» expresan criterios comprensibles sin obligar al docente a aprender una sintaxis.
+[338] [] Es posible combinar texto y filtros, reconocer qué criterios están activos y volver a la lista completa en un toque.
+[339] [] La tarjeta flexible protege la legibilidad del título, el tipo y los metadatos; separar «Ver detalle» de «Comentarios» reduce errores de navegación.
+[340] [] La mayor parte del comportamiento puede construirse con Compose y los campos ya presentes en PostEntity, reutilizando FilterChip y el catálogo de cursos.
+[341] [] Limitaciones:
+[342] [] Los filtros visibles ocupan una franja de pantalla y deben desplazarse horizontalmente en dispositivos pequeños, sin competir con la lista.
+[343] [] La aplicación debe sincronizar búsqueda y filtros; al cambiar de curso o limpiar criterios se debe actualizar el resultado de forma coherente.
+[344] [] El filtrado local solo abarca los anuncios cargados. Para grandes volúmenes, búsqueda global o paginación se requerirían cambios en service-posts y get_posts_fun.
+[349] [] Figura: Alternativa B: buscador visible y filtros sin aplicar.
+[350] [] Figura: Alternativa B: filtros por curso y tipo activos.
+[351] [] Figura: Alternativa B: resultados con tipo y prioridad.
+[352] [] Figura: Alternativa B: sin coincidencias y opción Limpiar.
+[356] [] Figura: Alternativa B: detalle del anuncio y acceso independiente a Comentarios.
+[358] [] El estado sin coincidencias también se trata como una decisión de interfaz: se muestra el criterio aplicado, el mensaje «No se encontraron anuncios» y la acción «Limpiar búsqueda y filtros», en lugar de presentar una pantalla vacía sin explicación.
+[359] [] Alternativa C: pantalla independiente de búsqueda avanzada
+[360] [] El muro permanece visualmente compacto y conserva una lupa. Al tocarla, se abre una pantalla específica con campo de texto, selección de curso, tipo de anuncio, rango de fechas y ordenamiento; al pulsar «Ver resultados» aparece una lista con los criterios aplicados. El docente puede regresar al muro o modificar su consulta desde esta misma pantalla. La prioridad y el archivado serían opciones futuras, sujetas a disponibilidad real de datos.
+[361] [] Ventajas:
+[362] [] Concentra la búsqueda y permite incorporar varios criterios sin ocupar espacio permanente en el muro principal.
+[363] [] Puede resultar útil para búsquedas poco frecuentes pero complejas, como localizar anuncios de un curso en un intervalo de fechas.
+[364] [] Distingue claramente la configuración de criterios de la lectura habitual del muro.
+[365] [] Limitaciones:
+[366] [] Obliga a salir del muro, seleccionar criterios y ejecutar la búsqueda, incluso para localizar un título conocido.
+[367] [] Aumenta el número de pantallas y exige conservar criterios y resultados al navegar, añadiendo complejidad.
+[368] [] En una actividad frecuente y breve, el flujo de búsqueda avanzada añade pasos y puede generar más carga cognitiva de la necesaria.
+[371] [] Figura: Alternativa C: pantalla de búsqueda avanzada.
+[372] [] Figura: Alternativa C: resultados y criterios aplicados.
+[374] [] También se consideró ordenar y agrupar automáticamente todas las publicaciones por curso sin ofrecer búsqueda textual; se descartó porque no resuelve el caso principal de localizar rápidamente una publicación específica.
+[375] [] Comparación de alternativas
+[376] [] Criterio
+[377] [] A: búsqueda sencilla
+[378] [] B: buscador y filtros
+[379] [] C: búsqueda avanzada
+[380] [] Acceso a búsqueda
+[381] [] Desde la lupa
+[382] [] Campo visible en el muro
+[383] [] Abre otra pantalla
+[384] [] Filtrado combinado
+[385] [] Solo texto
+[386] [] Texto, curso, tipo y orden
+[387] [] Varios campos, más pasos
+[388] [] Claridad de criterios
+[389] [] Baja: solo consulta
+[390] [] Alta: chips activos y reinicio
+[391] [] Alta, pero separada del muro
+[392] [] Prevención de errores
+[393] [] Media: borrar consulta
+[394] [] Alta: estados, detalle y limpiar
+[395] [] Media: cambios de pantalla
+[396] [] Lectura de publicaciones
+[397] [] Tarjeta corregida básica
+[398] [] Resumen adaptable y detalle
+[399] [] Depende del muro original
+[400] [] Uso en pantallas pequeñas
+[401] [] Buena si se reduce cabecera
+[402] [] Media-alta: filtros desplazables
+[403] [] Más espacio en muro, más pasos
+[404] [] Esfuerzo de implementación
+[405] [] Bajo
+[406] [] Medio
+[407] [] Medio-alto
+[408] [] Dependencia del backend
+[409] [] Busca solo anuncios cargados
+[410] [] Local; prioridad/archivo requieren backend
+[411] [] Búsqueda remota no disponible
+[413] [] Alternativa seleccionada: B, muro compacto con búsqueda visible y filtros contextuales
+[414] [] Se elige la alternativa B por las siguientes razones:
+[415] [] Resuelve la causa raíz encontrada en el código. El campo de búsqueda deja de almacenar un texto aislado y pasa a modificar la lista visualizada. A también corrige esta conexión, pero no permite afinar resultados con criterios visibles.
+[416] [] Mantiene la simplicidad en el uso habitual. El docente encuentra el buscador inmediatamente y utiliza filtros breves solo cuando los necesita; C exige abrir otra pantalla y ejecutar más pasos.
+[417] [] Hace explícitos los criterios y previene errores. Los chips muestran filtros activos, «Limpiar» recupera la lista completa, el estado sin resultados evita confundir una búsqueda fallida con un fallo del sistema y «Comentarios» no se mezcla con la lectura del anuncio.
+[418] [] Mejora la lectura con un costo técnico razonable. Usa LazyColumn, FilterChip, campos de PostEntity y estados reactivos; la altura adaptable y una vista de detalle permiten consultar textos extensos. No exige modificar el servidor para buscar dentro del conjunto ya recuperado.
+[419] [] Decisiones complementarias de diseño
+[420] [] Decisión
+[421] [] Motivo
+[422] [] Buscador compacto siempre visible
+[423] [] Permite iniciar una búsqueda sin descubrir primero un icono oculto.
+[424] [] FilterChip para curso y tipo
+[425] [] Controles reconocibles; muestran claramente qué criterios están activos.
+[426] [] Búsqueda parcial con estado compartido
+[427] [] La consulta modifica la lista y puede combinarse con filtros sin duplicar datos.
+[428] [] Tarjetas adaptables y acción «Comentarios» separada
+[429] [] Evita recortes de texto y accesos accidentales a la conversación.
+[430] [] Estado «Sin resultados» y acción «Limpiar»
+[431] [] Evita confundir ausencia de coincidencias con un fallo de carga.
+[432] [] Prioridad y archivado sujetos al modelo/backend
+[433] [] No presenta como implementadas funciones que todavía requieren persistencia y servicios.
+[435] [] Como regla de coherencia, los filtros se combinan con AND entre categorías y la búsqueda textual admite coincidencia parcial en los campos definidos. Borrar la búsqueda mantiene los filtros; «Limpiar filtros» restablece ambos. La fecha debe normalizarse antes de ordenar, porque el modelo actual la recibe como String y los formatos observados pueden variar.
+[436] [] Impacto técnico y alcance del prototipo
+[437] [] La propuesta requiere conectar SearchBoxComponent con el estado de pantalla, implementar el filtrado de anuncios en PostViewModel y actualizar AnnounceList. Además, se eliminará la altura fija de las tarjetas, incorporando resúmenes legibles, acceso independiente a comentarios y estados de carga, error y ausencia de resultados. La lista también deberá actualizarse después de publicar un anuncio.
+[438] [] Los filtros por curso y visibilidad pueden implementarse con los campos existentes, mientras que la prioridad y el archivado requieren modificaciones en el backend. La búsqueda local se limitará a los anuncios cargados, ya que service-posts no dispone de búsqueda ni paginación. Las maquetas representarán funcionalidades propuestas, no implementaciones validadas.
+[439] [Heading1] DISEÑO DE LA INTERFAZ Y COMPONENTES
+[440] [] Esta sección presenta la organización de la interfaz propuesta, las principales interacciones del docente y los layouts y componentes de Jetpack Compose que sustentan las decisiones de diseño más relevantes. Se describen solo los componentes cuya elección influye de forma significativa en el diseño o en la interacción.
+[442] [Heading2] Diseño para el Problema 1: Envío de anuncios públicos y privados
+[443] [] Se adopta la Alternativa B: un único formulario, abierto desde el botón flotante (+) del muro, con los campos en el siguiente orden: curso, audiencia («Todo el curso» o «Un estudiante»), estudiante (solo si la audiencia es privada), prioridad, título y contenido, resumen del destinatario y botones Cancelar y Publicar. El orden sigue la secuencia de decisión del docente: primero define a quién se dirige y con qué urgencia, y luego redacta el mensaje.
+[448] [] Figura: Alternativa B: formulario vacío; el botón Publicar está deshabilitado.
+[449] [] Figura: Alternativa B con «Todo el curso» y su resumen de destinatario.
+[450] [] Figura: Alternativa B con «Un estudiante»: selector con búsqueda de los estudiantes del curso.
+[451] [] Figura: Alternativa B con estudiante elegido y prioridad Alta: «Se enviará solo a: Ana Torres».
+[452] [] Interacciones principales del docente.
+[453] [] Interacción
+[454] [] Comportamiento de la interfaz
+[455] [] Publicar un anuncio al curso
+[456] [] Toca (+), elige curso, escribe y publica. Audiencia «Todo el curso» y prioridad «Media» vienen por defecto, por lo que no hay pasos extra.
+[457] [] Enviar un anuncio privado
+[458] [] Selecciona «Un estudiante»; aparece el selector con búsqueda y el resumen cambia a «Se enviará solo a: …».
+[459] [] Cambiar de curso
+[460] [] El estudiante elegido se reinicia para evitar enviar a quien no corresponde.
+[461] [] Corregir la audiencia
+[462] [] Puede alternar entre «Todo el curso» y «Un estudiante» sin perder el título ni el contenido escritos.
+[463] [] Acceso desde Contactos
+[464] [] Abre el mismo formulario con «Un estudiante» y el alumno ya seleccionado (atajo).
+[465] [] Identificar el anuncio en el muro
+[466] [] Los anuncios privados se distinguen con candado y color; la prioridad con etiqueta de color y texto.
+[468] [] Layouts y componentes de Jetpack Compose seleccionados.
+[469] [] Decisión de diseño
+[470] [] Componente / layout
+[471] [] Justificación
+[472] [] Contenedor del formulario
+[473] [] ModalBottomSheet o pantalla completa (en lugar de AlertDialog)
+[474] [] Admite más campos y desplazamiento; el AlertDialog queda corto con el teclado abierto.
+[475] [] Adaptación al teclado y a pantallas pequeñas
+[476] [] Column con verticalScroll y Modifier.imePadding()
+[477] [] Evita que el teclado tape los campos o el botón Publicar.
+[478] [] Selección de audiencia
+[479] [] SingleChoiceSegmentedButtonRow + SegmentedButton
+[480] [] Dos opciones explícitas y siempre visibles; evita la ambigüedad de un Switch («¿qué significa apagado?»).
+[481] [] Aparición del campo estudiante
+[482] [] AnimatedVisibility
+[483] [] Muestra el campo solo cuando se necesita, sin saturar el formulario.
+[484] [] Selección de curso
+[485] [] ExposedDropdownMenuBox
+[486] [] Lista corta; reutiliza el menú de cursos existente.
+[487] [] Selección de estudiante con búsqueda
+[488] [] ExposedDropdownMenuBox con OutlinedTextField editable y lista filtrada, alimentada por getStudentByCourse
+[489] [] Más rápido que un menú largo cuando hay muchos alumnos.
+[490] [] Prioridad
+[491] [] FilterChip en una Row (selección única)
+[492] [] Un toque, siempre visibles; combina color y texto para no depender solo del color.
+[493] [] Título y contenido
+[494] [] OutlinedTextField con supportingText (contador de 280 caracteres)
+[495] [] Retroalimentación inmediata del límite.
+[496] [] Prevención de errores
+[497] [] Button(enabled = isValid) y un Surface con el resumen del destinatario
+[498] [] Publicar solo se habilita con el formulario válido; el resumen es la última verificación.
+[499] [] Estado del formulario
+[500] [] ViewModel con StateFlow / UiState
+[501] [] Conserva lo escrito ante rotaciones y cambios de audiencia.
+[503] [Heading2] Diseño para el Problema 2: Visualización y búsqueda de anuncios
+[504] [] Se adopta la Alternativa B: un muro compacto con búsqueda visible y filtros contextuales. La pantalla se organiza, de arriba hacia abajo, en un encabezado reducido con el campo «Buscar anuncios»; una fila desplazable de filtros por curso y tipo («Todos», «Públicos», «Privados»), un control de orden («Más recientes» o «Más antiguos») y la lista de publicaciones. Cada tarjeta muestra primero el curso y la visibilidad, después el título y una vista previa del contenido, y finalmente la fecha, la prioridad cuando esté disponible y el número de comentarios. El docente puede consultar el contenido completo y abrir Comentarios mediante acciones diferentes. Así, la secuencia de uso es buscar, acotar los resultados, identificar el anuncio y decidir si leerlo o comentar. La búsqueda y los filtros se combinan; si no existen coincidencias, la pantalla explica la situación y permite restablecerlos. La prioridad y el archivado se consideran características propuestas, no funciones ya persistidas en el código original.
+[509] [] Figura: Alternativa B: muro compacto con búsqueda y filtros visibles.
+[510] [] Figura: Alternativa B: selección de curso y tipo, con resultados filtrados.
+[511] [] Figura: Alternativa B: sin coincidencias y opción «Limpiar filtros».
+[512] [] Figura: Alternativa B: detalle completo y acceso separado a Comentarios.
+[513] [] Interacciones principales del docente.
+[514] [] Interacción
+[515] [] Comportamiento de la interfaz
+[516] [] Buscar un anuncio por texto
+[517] [] Escribe una palabra en «Buscar anuncios»; la lista se actualiza con coincidencias parciales en título y contenido de los anuncios ya cargados. La búsqueda ignora mayúsculas/minúsculas.
+[518] [] Filtrar por curso y tipo
+[519] [] Selecciona el curso y «Públicos» o «Privados». Los filtros se combinan con el texto; las opciones seleccionadas permanecen visibles.
+[520] [] Ordenar los anuncios
+[521] [] Elige «Más recientes» o «Más antiguos». La interfaz ordena las fechas previamente normalizadas sin borrar la búsqueda ni los filtros activos.
+[522] [] Leer un anuncio completo
+[523] [] Toca la tarjeta o «Ver detalle». Se muestra el contenido íntegro y sus metadatos, sin obligarlo a entrar en la conversación.
+[524] [] Acceder a comentarios
+[525] [] Toca «Comentarios» en la tarjeta o el detalle. Se abre el chat del anuncio seleccionado, manteniendo visible el título como referencia.
+[526] [] Restablecer criterios o no encontrar resultados
+[527] [] Borra el texto sin perder filtros o pulsa «Limpiar filtros» para regresar a todos los anuncios. Si no hay coincidencias, aparece un mensaje y una acción para restablecerlos.
+[529] [] Layouts y componentes de Jetpack Compose seleccionados.
+[530] [] Decisión de diseño
+[531] [] Componente / layout
+[532] [] Justificación
+[533] [] Estructura principal del muro
+[534] [] Column + LazyColumn con contentPadding
+[535] [] Coloca búsqueda y filtros sobre las publicaciones; el padding inferior evita que el botón (+) cubra la última tarjeta.
+[536] [] Campo de búsqueda siempre visible
+[537] [] OutlinedTextField con leadingIcon, trailingIcon y query elevado
+[538] [] Permite empezar a buscar sin abrir otro modo; el botón de borrar hace reversible la consulta. A diferencia del código actual, onValueChange modifica el estado compartido.
+[539] [] Filtros por curso y visibilidad
+[540] [] LazyRow + FilterChip (selección única por categoría)
+[541] [] Mantiene visibles los criterios activos y permite combinarlos sin ocupar varias filas en pantallas estrechas.
+[542] [] Selección de curso
+[543] [] ExposedDropdownMenuBox o menú anclado
+[544] [] Permite elegir entre los cursos obtenidos del catálogo, mostrando nombres legibles en vez de depender solo del código.
+[545] [] Orden temporal de resultados
+[546] [] DropdownMenu / ExposedDropdownMenuBox
+[547] [] Ofrece «Más recientes» y «Más antiguos» sin saturar la cabecera. Las fechas se interpretan antes de ordenar, pues llegan como String.
+[548] [] Estado de búsqueda y filtros
+[549] [] ViewModel + StateFlow / UiState y lista derivada
+[550] [] Conserva la lista original, combina texto y filtros y recalcula resultados; evita que la consulta permanezca aislada en SearchBoxComponent.
+[551] [] Tarjetas de anuncios adaptables
+[552] [] Card + Column + Row; wrapContentHeight; maxLines y TextOverflow.Ellipsis en la vista previa
+[553] [] Sustituye la altura fija de 220 dp, mejora la lectura y permite mostrar el texto completo en una vista de detalle.
+[554] [] Visibilidad, prioridad y metadatos
+[555] [] Surface o SuggestionChip + Text + Icon
+[556] [] Diferencia «Público/Privado», fecha y contador de comentarios mediante texto e iconos; la prioridad solo se mostrará con datos disponibles y soporte backend.
+[557] [] Separación de detalle y comentarios
+[558] [] ModalBottomSheet o pantalla de detalle + TextButton «Comentarios»
+[559] [] Consultar un texto largo no abre directamente el chat; el acceso a comentarios queda identificado y conserva el contexto del anuncio.
+[560] [] Estados vacíos, carga y error
+[561] [] Text + Button «Limpiar filtros»; CircularProgressIndicator; Snackbar / Retry Button
+[562] [] Aclara cuándo no hay coincidencias, diferencia una lista vacía de un fallo de red y ofrece recuperación sin acciones ambiguas.
+[565] [Heading1] JUSTIFICACIÓN Y EVALUACIÓN DE LA PROPUESTA
+[566] [Heading2] ¿Por qué la interfaz propuesta es más adecuada que la actual?
+[567] [] La interfaz actual presenta fallas en tres niveles, identificados tanto en las capturas como en el código base. En organización, las tarjetas tienen una altura fija de 220 dp, la cabecera puede ocupar hasta el 48 % de una pantalla de 360 dp y el ancho no tiene límite en horizontal. En componentes, el tipo de anuncio es solo texto gris, los avatares cambian de color aleatoriamente y el botón flotante tapa contenido. En interacción, el envío privado está oculto en Contactos, la búsqueda no filtra y tocar cualquier zona de la tarjeta abre los comentarios.
+[568] [] La interfaz propuesta se sustenta en los criterios de:
+[570] [] Envío de anuncios. La decisión «público o privado» deja de depender de la pestaña por la que se entra y pasa a ser un control explícito («Todo el curso» / «Un estudiante») dentro de un único formulario. Esto elimina la duplicación de formularios y deja un solo lugar para publicar.
+[571] [] Visualización y búsqueda. El texto del buscador pasa a modificar la lista, se agregan filtros visibles por curso y tipo, y la tarjeta se adapta a su contenido. El detalle del anuncio queda separado de los comentarios.
+[572] [] Adaptación a pantallas pequeñas. Se elimina la altura rígida, se reduce la cabecera y se reserva espacio inferior para que el botón (+) no cubra la última tarjeta.
+[573] [] Cobertura de requisitos. Se atienden los puntos del módulo que hoy no se cumplen: anuncios privados desde el muro, prioridad y búsqueda. El archivado se plantea como comportamiento propuesto, porque requiere ampliar el modelo de datos y los servicios.
+[574] [] La propuesta también se sustenta en criterios reconocidos de usabilidad (heurísticas de Nielsen), que sirven para contrastarla con la interfaz actual:
+[575] [] Heurística
+[576] [] Cómo la atiende la propuesta
+[577] [] Cómo estaba en la interfaz actual
+[578] [] Prevención de errores
+[579] [] Publicar deshabilitado hasta completar el formulario, estudiante obligatorio en modo privado, reinicio al cambiar de curso
+[580] [] Sin control sobre el destinatario
+[581] [] Visibilidad del estado
+[582] [] Resumen «Se enviará a…», chips de filtros activos, estados de carga, error y sin resultados
+[583] [] Lista vacía sin explicación; errores solo en Logcat
+[584] [] Coincidencia con el mundo real
+[585] [] Etiquetas en lenguaje del docente («Todo el curso», «Un estudiante»)
+[586] [] No existía la elección
+[587] [] Control y libertad
+[588] [] «Limpiar filtros», borrar búsqueda sin perder filtros, corregir audiencia sin perder lo escrito
+[589] [] No había forma de revertir criterios
+[590] [] Reconocer antes que recordar
+[591] [] Buscador y filtros siempre visibles; tipo con candado y color
+[592] [] Buscador oculto tras una lupa; tipo como texto gris
+[593] [] Consistencia y minimalismo
+[594] [] Un solo formulario, un solo patrón de tarjeta, campos condicionales
+[595] [] Dos formularios casi idénticos
+[597] [Heading2] ¿Qué decisiones del diseño contribuyen a que sea simple e intuitiva?
+[598] [] Valores por defecto razonables: El caso más frecuente, publicar al curso con prioridad Media, no requiere pasos adicionales.
+[599] [] Control segmentado en lugar de un Switch: Dos etiquetas explícitas eliminan la ambigüedad de «¿qué significa apagado?».
+[600] [] Campos condicionales: El selector de estudiante aparece solo cuando la audiencia es privada, por lo que el formulario no crece para quien publica a todo el curso.
+[601] [] Verificación en lenguaje natural: El resumen del destinatario sobre «Publicar» funciona como última comprobación antes de enviar.
+[602] [] Información que no depende solo del color: La prioridad y el tipo combinan color, texto e ícono, lo que beneficia la accesibilidad.
+[603] [] Búsqueda al alcance: El campo visible evita tener que descubrir primero un ícono, y los filtros usan componentes reconocibles (FilterChip).
+[604] [] Separación entre leer y comentar: Consultar un anuncio ya no abre el chat. «Ver detalle» y «Comentarios» son acciones distintas, lo que reduce los accesos accidentales.
+[605] [] Estados explícito:. «Sin coincidencias» se distingue de un fallo de carga, y siempre existe una acción para recuperarse.
+[608] [Heading2] ¿Qué posibles dificultades podría experimentar el usuario con la propuesta?
+[609] [] Formulario más largo. Con teclado abierto y en pantallas pequeñas, el docente podría perder de vista el botón Publicar. Se mitiga con desplazamiento vertical, imePadding() y un panel inferior alto. Aun así, es lo primero que debe verificarse en una prueba.
+[610] [] Reinicio del estudiante al cambiar de curso. Es una medida de seguridad, pero podría sorprender si no se comunica. Conviene acompañarla de un aviso breve.
+[611] [] Confirmar por costumbre. Un docente podría ignorar el resumen del destinatario. La validación del botón Publicar actúa como segunda barrera, pero no elimina por completo este riesgo.
+[612] [] Filtros sobre anuncios ya cargados. La búsqueda y el filtrado locales no alcanzan el historial completo. Con muchos anuncios, el docente podría creer que una publicación no existe cuando simplemente no se ha cargado. Una búsqueda global o paginación requeriría cambios en service-posts y get_posts_fun.
+[613] [] Prioridad y archivado dependientes del backend. Hasta ampliar los modelos y servicios, se presentan como comportamiento propuesto y no como funciones persistidas.
+[614] [] Franja de filtros. Ocupa espacio vertical y requiere desplazamiento horizontal en dispositivos pequeños. Debe comprobarse que no compita con la lista en pantallas de 360 dp de alto.
+[616] [Heading2] ¿Cómo comprobaría que el diseño facilita las tareas del docente?
+[617] [] Hasta ahora la propuesta se ha validado mediante análisis del código, revisión heurística y un prototipo en modo demostración. No se han realizado pruebas con usuarios. La comprobación propuesta tiene tres partes.
+[619] [] Prueba de usabilidad por tareas, comparando la interfaz actual con la propuesta.
+[620] [] Participan entre 5 y 8 docentes, o estudiantes que simulen ese rol, con el prototipo en Jetpack Compose. Las tareas son:
+[622] [] Publicar un anuncio al curso con prioridad Alta.
+[623] [] Enviar un anuncio privado a un estudiante concreto.
+[624] [] Encontrar un anuncio por una palabra de su título.
+[625] [] Filtrar los anuncios de un curso que sean privados.
+[626] [] Leer un anuncio completo y luego abrir sus comentarios.
+[628] [] Métricas.
+[629] [] Tasa de éxito por tarea.
+[630] [] Tiempo de ejecución.
+[631] [] Número de toques.
+[632] [] Errores, especialmente anuncios dirigidos al destinatario equivocado y aperturas accidentales de comentarios.
+[633] [] Percepción de facilidad mediante el cuestionario SUS y preguntas abiertas sobre qué resultó confuso.
+[635] [] Como criterio de éxito se propone que la mayoría complete las tareas sin ayuda, que no haya envíos al destinatario equivocado y que tiempos y errores mejoren respecto a la interfaz actual. Los umbrales exactos deben fijarse antes de la prueba.
+[637] [] Verificación técnica en distintos tamaños de pantalla.
+[638] [] Se revisan las resoluciones usadas en el análisis (por ejemplo 640×360, 914×411 y 997×448 dp, en vertical y horizontal). Se comprueba que ningún dato mínimo quede oculto, que la cabecera no ocupe una proporción excesiva y que el botón flotante no cubra contenido.
+[640] [] La observación con pensamiento en voz alta complementa las métricas, porque permite detectar dudas que los números no muestran. Las conclusiones de esta evaluación solo serían válidas si el prototipo se prueba con datos más realistas que los actuales (por ejemplo, un selector de estudiantes distinto por curso).
+[641] [Heading1] CONCLUSIONES
+[642] [] El análisis de la interfaz actual mostró que sus dificultades no son solo estéticas. Hay problemas de organización (alturas y márgenes rígidos), de selección de componentes (jerarquía tipográfica débil, avatares inestables, botón flotante que tapa contenido) y de interacción (envío privado oculto, búsqueda que no filtra, lectura mezclada con conversación).
+[643] [] Para el envío de anuncios se eligió la Alternativa B, un formulario único con selector de audiencia. Resuelve la causa principal, que era que lo público o privado dependía de la pestaña de entrada, mantiene el caso frecuente sin pasos extra.
+[644] [] Para la visualización y búsqueda se eligió la Alternativa B, un muro compacto con búsqueda visible y filtros contextuales. Conecta la búsqueda con la lista, separa la lectura de los comentarios y explica los estados vacíos.
+[645] [] La propuesta cubre los requisitos que hoy no se cumplen, pero prioridad y archivado dependen de ampliar el modelo de datos y los servicios. Del mismo modo, la búsqueda local solo alcanza los anuncios ya cargados. Estas limitaciones se declaran de forma explícita y no se presentan como funciones implementadas.
+[646] [] Como trabajo futuro se recomienda ampliar PostEntity y las funciones del servidor para persistir prioridad y archivado, incorporar paginación o búsqueda remota, normalizar las fechas y validar la propuesta con docentes mediante la prueba por tareas descrita en 4.4.
+[647] [Heading1] REFERENCIAS
+[648] [] OpenAI. (2024). ChatGPT [Modelo de lenguaje grande]. https://chatgpt.com/s/t_6af13c6259bc8191b817eea7def0c138
+[650] [] OpenAI. (2024). ChatGPT [Modelo de lenguaje grande]. https://chatgpt.com/s/t_6af13c45ed288191a30397317ade01b5
+SECCION <ns0:sectPr xmlns:ns0="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:ns1="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><ns0:headerReference ns1:id="rId43" ns0:type="default" /><ns0:footerReference ns1:id="rId44" ns0:type="default" /><ns0:pgSz ns0:h="16834" ns0:w="11909" ns0:orient="portrait" /><ns0:pgMar ns0:bottom="1133.8582677165355" ns0:top="1700.7874015748032" ns0:left="1133.8582677165355" ns0:right="1133.8582677165355" ns0:header="720" ns0:footer="720" /><ns0:pgNumType ns0:start="1" /></ns0:sectPr>
